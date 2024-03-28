@@ -49,7 +49,7 @@ void elj_print_stack(stack_t **elj_stack, unsigned int elj_line_number)
  * @stack: Pointer to a pointer pointing to top node of the stack.
  * @line_number: Interger representing the line number of of the opcode.
  */
-void pop_top(stack_t **elj_stack, unsigned int line_number)
+void elj_pop_top(stack_t **elj_stack, unsigned int line_number)
 {
 	stack_t *elj_tmp;
 
