@@ -1,52 +1,98 @@
 #include "monty.h"
 
-void nop(stack_t **stack, unsigned int line_num)
+/**
+ * nop - Does nothing.
+ * @stack: Pointer to a pointer pointing to top node of the stack.
+ * @line_number: Interger representing the line number of of the opcode.
+ */
+void elj_nop(stack_t **elj_stack, unsigned int elj_line_number)
 {
-	(void)stack;
-	(void)line_num;
+	(void)elj_stack;
+	(void)elj_line_number;
 }
 
-void swap_nodes(stack_t **stack, unsigned int line_num)
-{
-	stack_t *temp;
 
-	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
-		handle_more_error(8, line_num, "swap");
-	temp = (*stack)->next;
-	(*stack)->next = temp->next;
-	if (temp->next != NULL)
-		temp->next->prev = *stack;
-	temp->next = *stack;
-	(*stack)->prev = temp;
-	temp->prev = NULL;
-	*stack = temp;
+/**
+ * swap_nodes - Swaps the top two elements of the stack.
+ * @stack: Pointer to a pointer pointing to top node of the stack.
+ * @line_number: Interger representing the line number of of the opcode.
+ */
+void elj_swap_nodes(stack_t **elj_stack, unsigned int elj_line_number)
+{
+	stack_t *elj_tmp;
+
+	if (elj_stack == NULL || *elj_stack == NULL || (*elj_stack)->next == NULL)
+		elj_more_err(8, elj_line_number, "swap");
+	elj_tmp = (*elj_stack)->next;
+	(*elj_stack)->next = elj_tmp->next;
+	if (elj_tmp->next != NULL)
+		elj_tmp->next->prev = *elj_stack;
+	elj_tmp->next = *elj_stack;
+	(*elj_stack)->prev = elj_tmp;
+	elj_tmp->prev = NULL;
+	*elj_stack = elj_tmp;
 }
 
-void add_data(stack_t **stack, unsigned int line_num)
+/**
+ * add_nodes - Adds the top two elements of the stack.
+ * @stack: Pointer to a pointer pointing to top node of the stack.
+ * @line_number: Interger representing the line number of of the opcode.
+ */
+void elj_add_nodes(stack_t **elj_stack, unsigned int elj_line_number)
 {
-	int sum;
+	int elj_sum;
 
-	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
-		handle_more_error(8, line_num, "add");
+	if (elj_stack == NULL || *elj_stack == NULL || (*elj_stack)->next == NULL)
+		elj_more_err(8, elj_line_number, "add");
 
-	(*stack) = (*stack)->next;
-	sum = (*stack)->n + (*stack)->prev->n;
-	(*stack)->n = sum;
-	free((*stack)->prev);
-	(*stack)->prev = NULL;
+	(*elj_stack) = (*elj_stack)->next;
+	elj_sum = (*elj_stack)->n + (*elj_stack)->prev->n;
+	(*elj_stack)->n = elj_sum;
+	free((*elj_stack)->prev);
+	(*elj_stack)->prev = NULL;
 }
 
-void sub_data(stack_t **stack, unsigned int line_num)
+
+/**
+ * sub_nodes - Adds the top two elements of the stack.
+ * @stack: Pointer to a pointer pointing to top node of the stack.
+ * @line_number: Interger representing the line number of of the opcode.
+ */
+void elj_sub_nodes(stack_t **elj_stack, unsigned int elj_line_number)
 {
-	int sum;
+	int elj_sum;
 
-	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
-		handle_more_error(8, line_num, "sub");
+	if (elj_stack == NULL || *elj_stack == NULL || (*elj_stack)->next == NULL)
 
-	(*stack) = (*stack)->next;
-	sum = (*stack)->n - (*stack)->prev->n;
-	(*stack)->n = sum;
-	free((*stack)->prev);
-	(*stack)->prev = NULL;
+		elj_more_err(8, elj_line_number, "sub");
+
+
+	(*elj_stack) = (*elj_stack)->next;
+	elj_sum = (*elj_stack)->n - (*elj_stack)->prev->n;
+	(*elj_stack)->n = elj_sum;
+	free((*elj_stack)->prev);
+	(*elj_stack)->prev = NULL;
+}
+
+
+/**
+ * div_nodes - Adds the top two elements of the stack.
+ * @stack: Pointer to a pointer pointing to top node of the stack.
+ * @line_number: Interger representing the line number of of the opcode.
+ */
+void elj_div_nodes(stack_t **elj_stack, unsigned int elj_line_number)
+{
+	int elj_sum;
+
+	if (elj_stack == NULL || *elj_stack == NULL || (*elj_stack)->next == NULL)
+		elj_more_err(8, elj_line_number, "div");
+
+	if ((*elj_stack)->n == 0)
+		elj_more_err(9, elj_line_number);
+	(*elj_stack) = (*elj_stack)->next;
+	elj_sum = (*elj_stack)->n / (*elj_stack)->prev->n;
+	(*elj_stack)->n = elj_sum;
+	free((*elj_stack)->prev);
+	(*elj_stack)->prev = NULL;
 }
 

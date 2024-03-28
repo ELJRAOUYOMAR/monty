@@ -42,39 +42,44 @@ typedef struct instruction_s
 extern stack_t *head;
 typedef void (*op_func)(stack_t **, unsigned int);
 
-void open_file(char *file_name);
-int parse_line(char *buffer, int line_number, int format);
-void read_file(FILE *);
-int len_chars(FILE *);
-void find_handler(char *, char *, int, int);
+/*file operations*/
+void elj_open_file(char *elj_file_name);
+int elj_parse_line(char *elj_buffer, int elj_line_number, int elj_format);
+void elj_read_file(FILE *);
+int elj_len_chars(FILE *);
+void elj_find_func(char *, char *, int, int);
 
-stack_t *create_node(int data);
-void free_nodes(void);
-void print_stack(stack_t **, unsigned int);
-void add_to_stack(stack_t **, unsigned int);
-void add_to_queue(stack_t **, unsigned int);
+/*Stack operations*/
+stack_t *elj_create_node(int elj_n);
+void elj_free_nodes(void);
+void elj_print_stack(stack_t **, unsigned int);
+void elj_add_to_stack(stack_t **, unsigned int);
+void elj_add_to_queue(stack_t **, unsigned int);
 
-void call_handler(op_func, char *, char *, int, int);
+void elj_call_fun(op_func elj_func, char *elj_op, char *elj_val, int elj_ln, int elj_format);
 
-void print_top(stack_t **, unsigned int);
-void pop_top(stack_t **, unsigned int);
-void nop(stack_t **, unsigned int);
-void swap_nodes(stack_t **, unsigned int);
+void elj_print_top(stack_t **, unsigned int);
+void elj_pop_top(stack_t **, unsigned int);
+void elj_nop(stack_t **, unsigned int);
+void elj_swap_nodes(stack_t **, unsigned int);
 
-void add_data(stack_t **, unsigned int);
-void sub_data(stack_t **, unsigned int);
-void div_data(stack_t **, unsigned int);
-void mul_data(stack_t **, unsigned int);
-void mod_data(stack_t **, unsigned int);
+/*Math operations with nodes*/
+void elj_add_nodes(stack_t **, unsigned int);
+void elj_sub_nodes(stack_t **, unsigned int);
+void elj_div_nodes(stack_t **, unsigned int);
+void elj_mul_nodes(stack_t **, unsigned int);
+void elj_mod_nodes(stack_t **, unsigned int);
 
-void print_char(stack_t **, unsigned int);
-void print_str(stack_t **, unsigned int);
-void rotate_left(stack_t **, unsigned int);
-void rotate_right(stack_t **, unsigned int);
+/*String operations*/
+void elj_print_char(stack_t **, unsigned int);
+void elj_print_str(stack_t **, unsigned int);
+void elj_rotl(stack_t **, unsigned int);
 
-void handle_error(int error_code, ...);
-void handle_more_error(int error_code, ...);
-void handle_string_error(int error_code, ...);
+/*Error hanlding*/
+void elj_err(int elj_error_code, ...);
+void elj_more_err(int elj_error_code, ...);
+void elj_string_err(int elj_error_code, ...);
+void elj_rotr(stack_t **, unsigned int);
 
 #endif
 

@@ -1,32 +1,45 @@
 #include "monty.h"
 
-void mul_data(stack_t **stack, unsigned int line_num)
+/**
+ * mul_nodes - Adds the top two elements of the stack.
+ * @stack: Pointer to a pointer pointing to top node of the stack.
+ * @line_number: Interger representing the line number of of the opcode.
+ */
+void elj_mul_nodes(stack_t **elj_stack, unsigned int elj_line_number)
 {
-	int sum;
+	int elj_sum;
 
-	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
-		handle_more_error(8, line_num, "mul");
+	if (elj_stack == NULL || *elj_stack == NULL || (*elj_stack)->next == NULL)
+		elj_more_err(8, elj_line_number, "mul");
 
-	(*stack) = (*stack)->next;
-	sum = (*stack)->n * (*stack)->prev->n;
-	(*stack)->n = sum;
-	free((*stack)->prev);
-	(*stack)->prev = NULL;
+	(*elj_stack) = (*elj_stack)->next;
+	elj_sum = (*elj_stack)->n * (*elj_stack)->prev->n;
+	(*elj_stack)->n = elj_sum;
+	free((*elj_stack)->prev);
+	(*elj_stack)->prev = NULL;
 }
 
-void mod_data(stack_t **stack, unsigned int line_num)
+
+/**
+ * mod_nodes - Adds the top two elements of the stack.
+ * @stack: Pointer to a pointer pointing to top node of the stack.
+ * @line_number: Interger representing the line number of of the opcode.
+ */
+void elj_mod_nodes(stack_t **elj_stack, unsigned int elj_line_number)
 {
-	int sum;
+	int elj_sum;
 
-	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
-		handle_more_error(8, line_num, "mod");
+	if (elj_stack == NULL || *elj_stack == NULL || (*elj_stack)->next == NULL)
 
-	if ((*stack)->n == 0)
-		handle_more_error(9, line_num);
-	(*stack) = (*stack)->next;
-	sum = (*stack)->n % (*stack)->prev->n;
-	(*stack)->n = sum;
-	free((*stack)->prev);
-	(*stack)->prev = NULL;
+		elj_more_err(8, elj_line_number, "mod");
+
+
+	if ((*elj_stack)->n == 0)
+		elj_more_err(9, elj_line_number);
+	(*elj_stack) = (*elj_stack)->next;
+	elj_sum = (*elj_stack)->n % (*elj_stack)->prev->n;
+	(*elj_stack)->n = elj_sum;
+	free((*elj_stack)->prev);
+	(*elj_stack)->prev = NULL;
 }
 

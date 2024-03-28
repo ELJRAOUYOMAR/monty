@@ -1,55 +1,77 @@
 #include "monty.h"
 
-void add_to_stack(stack_t **new_node, __attribute__((unused))unsigned int line_num)
-{
-	stack_t *temp;
 
-	if (new_node == NULL || *new_node == NULL)
+/**
+ * add_to_stack - Adds a node to the stack.
+ * @new_node: Pointer to the new node.
+ * @ln: Interger representing the line number of of the opcode.
+ */
+void elj_add_to_stack(stack_t **elj_new_node, __attribute__((unused))unsigned int elj_ln)
+{
+	stack_t *elj_tmp;
+
+	if (elj_new_node == NULL || *elj_new_node == NULL)
 		exit(EXIT_FAILURE);
 	if (head == NULL)
 	{
-		head = *new_node;
+		head = *elj_new_node;
 		return;
 	}
-	temp = head;
-	head = *new_node;
-	head->next = temp;
-	temp->prev = head;
+	elj_tmp = head;
+	head = *elj_new_node;
+	head->next = elj_tmp;
+	elj_tmp->prev = head;
 }
 
-void print_stack(stack_t **stack, unsigned int line_num)
-{
-	stack_t *temp;
 
-	(void) line_num;
-	if (stack == NULL)
+/**
+ * print_stack - Adds a node to the stack.
+ * @stack: Pointer to a pointer pointing to top node of the stack.
+ * @line_number: line number of  the opcode.
+ */
+void elj_print_stack(stack_t **elj_stack, unsigned int elj_line_number)
+{
+	stack_t *elj_tmp;
+
+	(void) elj_line_number;
+	if (elj_stack == NULL)
 		exit(EXIT_FAILURE);
-	temp = *stack;
-	while (temp != NULL)
+	elj_tmp = *elj_stack;
+	while (elj_tmp != NULL)
 	{
-		printf("%d\n", temp->n);
-		temp = temp->next;
+		printf("%d\n", elj_tmp->n);
+		elj_tmp = elj_tmp->next;
 	}
 }
 
-void pop_top(stack_t **stack, unsigned int line_num)
+/**
+ * pop_top - Adds a node to the stack.
+ * @stack: Pointer to a pointer pointing to top node of the stack.
+ * @line_number: Interger representing the line number of of the opcode.
+ */
+void pop_top(stack_t **elj_stack, unsigned int line_number)
 {
-	stack_t *temp;
+	stack_t *elj_tmp;
 
-	if (stack == NULL || *stack == NULL)
-		handle_more_error(7, line_num);
+	if (elj_stack == NULL || *elj_stack == NULL)
+		elj_more_err(7, line_number);
 
-	temp = *stack;
-	*stack = temp->next;
-	if (*stack != NULL)
-		(*stack)->prev = NULL;
-	free(temp);
+	elj_tmp = *elj_stack;
+	*elj_stack = elj_tmp->next;
+	if (*elj_stack != NULL)
+		(*elj_stack)->prev = NULL;
+	free(elj_tmp);
 }
 
-void print_top(stack_t **stack, unsigned int line_num)
+/**
+ * print_top - Prints the top node of the stack.
+ * @stack: Pointer to a pointer pointing to top node of the stack.
+ * @line_number: Interger representing the line number of of the opcode.
+ */
+void elj_print_top(stack_t **elj_stack, unsigned int elj_line_number)
 {
-	if (stack == NULL || *stack == NULL)
-		handle_more_error(6, line_num);
-	printf("%d\n", (*stack)->n);
+	if (elj_stack == NULL || *elj_stack == NULL)
+		elj_more_err(6, elj_line_number);
+	printf("%d\n", (*elj_stack)->n);
 }
 
